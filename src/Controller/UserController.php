@@ -16,6 +16,20 @@ class UserController extends AbstractApiController
         return $this->json($user);
     }
 
+    public function fetch(Request $request): Response
+    {
+        $user_id = $request->get('userId');
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            'id' => $user_id,
+        ]);
+
+        if (!$user) {
+            return $this->respond($user, Response::HTTP_NOT_FOUND);
+        }
+
+        return $this->respond($user, Response::HTTP_OK);
+    }
+
     public function create(Request $request): Response
     {
         $form = $this->buildForm(UserType::class);

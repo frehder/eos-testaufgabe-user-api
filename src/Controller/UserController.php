@@ -29,6 +29,6 @@ class UserController extends AbstractApiController
         $this->getDoctrine()->getManager()->persist($user);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->json(Response::HTTP_CREATED);
+        return $this->respond($user, Response::HTTP_CREATED);
     }
 }

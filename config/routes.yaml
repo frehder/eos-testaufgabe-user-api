@@ -22,3 +22,10 @@ user_delete:
   methods: DELETE
   requirements:
     userId: '\d+'
+
+user_update:
+  path: /api/v1/user/{userId}
+  controller: App\Controller\UserController::update
+  methods: PATCH
+  requirements:
+    userId: '\d+'

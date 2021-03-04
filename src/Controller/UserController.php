@@ -61,5 +61,32 @@ class UserController extends AbstractApiController
         $this->getDoctrine()->getManager()->flush();
 
         return $this->respond('');
+
+    public function update(Request $request): Response
+    {
+        $user_id = $request->get('userId');
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            'id' => $user_id,
+        ]);
+
+        if (!$user) {
+            return $this->respond($user, Response::HTTP_NOT_FOUND);
+        }
+
+        $form = $this->buildForm(UserType::class, $user, [
+            'method' => $request->getMethod(),
+        ]);
+        $form->handleRequest($request);
+
+        if (!$form->isSubmitted() || !$form->isValid()) {
+            return $this->respond($form, Response::HTTP_BAD_REQUEST);
+        }
+
+        $updated_user_data = $form->getData();
+
+        $this->getDoctrine()->getManager()->persist($updated_user_data);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->respond('', Response::HTTP_NO_CONTENT);
     }
 }

@@ -8,3 +8,15 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+# tools
+.sublime-project
+*.sublime-project
+.sublime-workspace
+*.sublime-workspace
+.idea
+.idea*
+.vscode
+.vscode*
+.code-workspace
+*.code-workspace

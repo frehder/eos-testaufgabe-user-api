@@ -31,4 +31,21 @@ class UserController extends AbstractApiController
 
         return $this->respond($user, Response::HTTP_CREATED);
     }
+
+    public function delete(Request $request): Response
+    {
+        $user_id = $request->get('userId');
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([
+            'id' => $user_id,
+        ]);
+
+        if (!$user) {
+            return $this->respond($user, Response::HTTP_NOT_FOUND);
+        }
+
+        $this->getDoctrine()->getManager()->remove($user);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->respond('');
+    }
 }

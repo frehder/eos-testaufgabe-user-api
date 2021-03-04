@@ -3,3 +3,8 @@ user_list:
   path: /api/v1/users
   controller: App\Controller\UserController::list
   methods: GET
+
+user_create:
+  path: /api/v1/user
+  controller: App\Controller\UserController::create
+  methods: POST

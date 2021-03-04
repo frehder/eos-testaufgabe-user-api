@@ -13,7 +13,7 @@ class UserController extends AbstractApiController
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-        return $this->json($user);
+        return $this->respond($user, Response::HTTP_OK);
     }
 
     public function fetch(Request $request): Response
@@ -60,7 +60,8 @@ class UserController extends AbstractApiController
         $this->getDoctrine()->getManager()->remove($user);
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->respond('');
+        return $this->respond('', Response::HTTP_OK);
+    }
 
     public function update(Request $request): Response
     {

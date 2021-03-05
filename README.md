@@ -1,5 +1,5 @@
 
-# eos.uptrade Probeaufgabe
+# Probeaufgabe
 
 ## Aufgabe
 

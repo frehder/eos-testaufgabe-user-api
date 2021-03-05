@@ -13,30 +13,43 @@ Schreib eine einfache API (unter Nutzung des Symfony Framework), um eine Liste v
 
 ## How to use
 
-#### 0. Clone git repository
+#### 1. Start MySQL server
 
-#### 1. Install project
+#### 2. Clone git repository
+
+```bash
+$ git clone git@github.com:frehder/eos-testaufgabe-user-api.git
+$ cd eos-testaufgabe-user-api
+```
+
+#### 3. Create `.env.local`
+
+Duplicate sample:
+```bash
+cp .env.local.sample .env.local
+```
+
+Replace USER, PASSWORD and DATABASENAME in `.env.local`
+
+#### 4. Install project
 
 ```bash
 $ composer install
 ```
 
-#### 2. Start MySQL server
+#### 5. Run DB migration
 
-#### 3. Create file `.env.local` in project root
-
-Content:
-```
-DATABASE_URL="mysql://user:password@127.0.0.1:3306/eos_testaufgabe_user_api?serverVersion=5.7"
+```bash
+$ php bin/console doctrine:migrations:migrate
 ```
 
-#### 4. Start server
+#### 6. Start server
 
 ```bash
 $ symfony server:start
 ```
 
-#### 5. See Swagger API Documentation
+#### 7. See Swagger API Documentation in browser
 
 [http://127.0.0.1:8000/api/doc](http://127.0.0.1:8000/api/doc)
 
